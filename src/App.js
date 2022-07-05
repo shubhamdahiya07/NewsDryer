@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import NavBar from './components/NavBar';
 import News from './components/News';
 // import ReactDOM from "react-dom/client";
-import LoadingBar from "react-top-loading-bar";
+// import LoadingBar from "react-top-loading-bar";
 import {
   BrowserRouter,
   Routes,
@@ -30,11 +30,11 @@ setProgress=(progress)=>{
         <BrowserRouter>
           {/* stop  */}
           <NavBar />
-          <LoadingBar
+          {/* <LoadingBar
             color='#f11946'
             progress={this.state.progress}
             onLoaderFinished={() => this.setProgress(0)}
-          />
+          /> */}
           <Routes>
             <Route path="/" element={<News setProgress={this.setProgress} apiKey={this.apiKey} key="general" pageSize={6} category='general' />}>
             </Route>
