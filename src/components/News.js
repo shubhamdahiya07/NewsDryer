@@ -32,7 +32,7 @@ export class News extends Component {
 
     async componentDidMount() {
         this.props.setProgress(10);
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b7543689109349168f046cb338f5586b&page=1&pageSize=${this.props.pageSize}`;
+        let url = `https://gnews.io/api/v4/top-headlines?lang=en&country=${this.props.country}&topic=${this.props.category}&token=9f1b80129cbeb6e5be0864faf4022b78&page=1`;
         this.setState({ loading: true });
         let data = await fetch(url);
         this.props.setProgress(50);
@@ -47,7 +47,7 @@ export class News extends Component {
 
     fetchMoreData = async () => {
         this.setState({ page: this.state.page + 1 });
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b7543689109349168f046cb338f5586b&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
+        const url = `https://gnews.io/api/v4/top-headlines?lang=en&country=${this.props.country}&topic=${this.props.category}&token=9f1b80129cbeb6e5be0864faf4022b78&page=${this.state.page}`;
          let data = await fetch(url);
         let parsedData = await data.json()
         this.setState({
@@ -101,7 +101,7 @@ export class News extends Component {
                             {this.state.articles.map((element) => {
                                 return <div className="col-md-4" key={element.url}>
                                     <NewsItem title={element.title ? element.title.slice(0, 60) : " "} description={element.description ? element.description.slice(0, 100) : " "}
-                                        imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+                                        imageUrl={element.image} newsUrl={element.source.url} author={element.source.name} date={element.publishedAt} source={element.source.name} />
                                 </div>
                             })}
                         </div>
